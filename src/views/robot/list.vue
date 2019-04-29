@@ -123,9 +123,9 @@ export default {
         } else {
           find.isRun = 0;
           this.$notify({
-            title: "失败",
-            message: "机器人启动失败",
-            type: "error",
+            title: "成功",
+            message: "机器人成功关闭",
+            type: "success",
             duration: 2000
           });
         }

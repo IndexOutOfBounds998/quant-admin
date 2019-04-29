@@ -44,7 +44,7 @@
 
       <el-table-column class-name="status-col" label="是否限价" width="110">
         <template slot-scope="scope">
-          <el-tag >{{ checkIsLimitPrice(scope.row.isLimitPrice) }}</el-tag>
+          <el-tag>{{ checkIsLimitPrice(scope.row.isLimitPrice) }}</el-tag>
         </template>
       </el-table-column>
 
@@ -52,7 +52,7 @@
         <template slot-scope="scope">
           <span>{{ scope.row.buyPrice }}</span>
         </template>
-      </el-table-column> -->
+      </el-table-column>-->
 
       <el-table-column class-name="status-col" label="是否全部购买" width="110">
         <template slot-scope="scope">
@@ -62,7 +62,7 @@
 
       <el-table-column class-name="status-col" label="是否全部卖出" width="110">
         <template slot-scope="scope">
-          <el-tag >{{ checkSellState(scope.row.isAllSell) }}</el-tag>
+          <el-tag>{{ checkSellState(scope.row.isAllSell) }}</el-tag>
         </template>
       </el-table-column>
 
@@ -158,8 +158,8 @@ export default {
     confirmEdit(row) {
       //修改策略
       this.$router.push({
-        name: "Index",
-        params: {
+        path: "/strategy/index",
+        query: {
           id: row.id
         }
       });

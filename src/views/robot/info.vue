@@ -8,6 +8,7 @@
             <p>机器人编号: {{ scope.row.robotId }}</p>
             <p>日志信息: {{ scope.row.msg }}</p>
             <div slot="reference" class="name-wrapper">
+              <i class="el-icon-arrow-down"></i>
               <el-tag type="info">{{ scope.row.msg }}</el-tag>
             </div>
           </el-popover>
@@ -16,6 +17,7 @@
       <el-table-column prop="date" label="时间" width="300">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
+
           <span style="margin-left: 10px">{{ scope.row.date }}</span>
         </template>
       </el-table-column>

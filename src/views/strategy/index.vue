@@ -455,7 +455,7 @@ export default {
     };
   },
   created() {
-    const id = this.$route.params.id;
+    const id = this.$route.query.id;
     this.id = id;
     if (this.id !== undefined) {
       this.title = "修改";
@@ -473,6 +473,7 @@ export default {
         this.baseInfo.strategyName = data.strategyName;
         this.baseInfo.buyAllWeights = data.buyAllWeights;
         this.baseInfo.sellAllWeights = data.sellAllWeights;
+        this.baseInfo.profit=data.profit;
         this.baseInfo.sleep = data.sleep;
         if (data.isLimitPrice === 1) {
           //限价
