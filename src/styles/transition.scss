@@ -1,4 +1,4 @@
-//globl transition css
+//global transition css
 
 /*fade*/
 .fade-enter-active,
@@ -27,7 +27,7 @@
   transform: translateX(30px);
 }
 
-/*fade*/
+/*breadcrumb transition*/
 .breadcrumb-enter-active,
 .breadcrumb-leave-active {
   transition: all .5s;

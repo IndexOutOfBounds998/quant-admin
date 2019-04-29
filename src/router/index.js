@@ -35,109 +35,97 @@ export const constantRouterMap = [
     children: [{
       path: 'dashboard',
       component: () => import('@/views/dashboard/index')
+      , meta: { title: '控制面板' }
     }]
   },
-
   {
-    path: '/example',
+    path: '/strategy',
     component: Layout,
-    redirect: '/example/table',
-    name: 'Example',
-    meta: { title: 'Example', icon: 'example' },
+    meta: { title: '策略中心', icon: 'example' },
     children: [
       {
-        path: 'table',
-        name: 'Table',
-        component: () => import('@/views/table/index'),
-        meta: { title: 'Table', icon: 'table' }
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/strategy/list'),
+        meta: { title: '我的策略', icon: 'tree' }
       },
       {
-        path: 'tree',
-        name: 'Tree',
-        component: () => import('@/views/tree/index'),
-        meta: { title: 'Tree', icon: 'tree' }
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/strategy/index'),
+        meta: { title: '策略配置', icon: 'table' }
       }
+
     ]
   },
-
   {
-    path: '/form',
+    path: '/robot',
     component: Layout,
+    meta: { title: '托管中心', icon: 'people' },
     children: [
       {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/robot/list'),
+        meta: { title: '我的机器人', icon: 'peoples' }
+      }, {
         path: 'index',
-        name: 'Form',
-        component: () => import('@/views/form/index'),
-        meta: { title: 'Form', icon: 'form' }
+        name: 'Index',
+        component: () => import('@/views/robot/index'),
+        meta: { title: '添加机器人', icon: 'people' }
+      }, {
+        path: 'info',
+        name: 'Info',
+        hidden: true,
+        component: () => import('@/views/robot/info'),
+        meta: { title: '运行监控', icon: 'table' }
       }
     ]
   },
-
   {
-    path: '/nested',
+    path: '/account',
     component: Layout,
-    redirect: '/nested/menu1',
-    name: 'Nested',
     meta: {
-      title: 'Nested',
+      title: '配置中心',
       icon: 'nested'
     },
     children: [
       {
-        path: 'menu1',
-        component: () => import('@/views/nested/menu1/index'), // Parent router-view
-        name: 'Menu1',
-        meta: { title: 'Menu1' },
-        children: [
-          {
-            path: 'menu1-1',
-            component: () => import('@/views/nested/menu1/menu1-1'),
-            name: 'Menu1-1',
-            meta: { title: 'Menu1-1' }
-          },
-          {
-            path: 'menu1-2',
-            component: () => import('@/views/nested/menu1/menu1-2'),
-            name: 'Menu1-2',
-            meta: { title: 'Menu1-2' },
-            children: [
-              {
-                path: 'menu1-2-1',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-1'),
-                name: 'Menu1-2-1',
-                meta: { title: 'Menu1-2-1' }
-              },
-              {
-                path: 'menu1-2-2',
-                component: () => import('@/views/nested/menu1/menu1-2/menu1-2-2'),
-                name: 'Menu1-2-2',
-                meta: { title: 'Menu1-2-2' }
-              }
-            ]
-          },
-          {
-            path: 'menu1-3',
-            component: () => import('@/views/nested/menu1/menu1-3'),
-            name: 'Menu1-3',
-            meta: { title: 'Menu1-3' }
-          }
-        ]
-      },
-      {
-        path: 'menu2',
-        component: () => import('@/views/nested/menu2/index'),
-        meta: { title: 'menu2' }
+        path: 'index',
+        name: 'Index',
+        component: () => import('@/views/account/index'),
+        meta: { title: 'api配置', icon: 'table' }
+      }, {
+        path: 'info',
+        name: 'Info',
+        hidden: true,
+        component: () => import('@/views/account/info'),
+        meta: { title: '账户信息', icon: 'table' }
       }
     ]
   },
-
   {
-    path: 'external-link',
+    path: '/order',
     component: Layout,
+    hidden: true,
+    meta: {
+      title: '订单',
+      icon: 'nested'
+    },
     children: [
       {
-        path: 'https://panjiachen.github.io/vue-element-admin-site/#/',
-        meta: { title: 'External Link', icon: 'link' }
+        path: 'list',
+        name: 'List',
+        hidden: true,
+        component: () => import('@/views/order/list'),
+        meta: { title: '订单列表', icon: 'table' }
+      },
+      {
+        path: 'profit',
+        name: 'Profit',
+        hidden: true,
+        component: () => import('@/views/order/profit'),
+        meta: { title: '盈亏列表', icon: 'table' }
       }
     ]
   },

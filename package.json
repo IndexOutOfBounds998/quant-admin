@@ -1,5 +1,5 @@
 {
-  "name": "vue-admin-template",
+  "name": "lhjy",
   "version": "3.9.0",
   "license": "MIT",
   "description": "A vue admin template with Element UI & axios & iconfont & permission control & lint",
@@ -15,11 +15,13 @@
   },
   "dependencies": {
     "axios": "0.18.0",
+    "babel-polyfill": "^6.26.0",
     "element-ui": "2.4.6",
     "js-cookie": "2.2.0",
     "mockjs": "1.0.1-beta3",
     "normalize.css": "7.0.0",
     "nprogress": "0.2.0",
+    "stompjs": "^2.3.3",
     "vue": "2.5.17",
     "vue-router": "3.0.1",
     "vuex": "3.0.1"
