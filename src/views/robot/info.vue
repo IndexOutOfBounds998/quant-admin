@@ -39,7 +39,7 @@ export default {
     };
   },
   created() {
-    const id = this.$route.params.id;
+    const id = this.$route.query.id;
     this.robotId = id;
     if (this.robotId !== undefined) {
       this.initWebSocket();

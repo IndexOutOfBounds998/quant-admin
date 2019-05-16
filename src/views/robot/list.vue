@@ -74,8 +74,8 @@ export default {
     },
     robotInfo(row) {
       this.$router.push({
-        name: "Info",
-        params: {
+        path: "/robot/info",
+        query: {
           id: row.id
         }
       });

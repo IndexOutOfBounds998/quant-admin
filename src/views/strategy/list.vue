@@ -30,13 +30,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="300px" label="策略购买总权重">
+      <el-table-column width="180px" label="策略购买总权重">
         <template slot-scope="scope">
           <span>{{ scope.row.buyAllWeights }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="300px" label="策略卖出总权重">
+      <el-table-column width="180px" label="策略卖出总权重">
         <template slot-scope="scope">
           <span>{{ scope.row.sellAllWeights }}</span>
         </template>
@@ -72,14 +72,15 @@
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="操作" width="120">
+      <el-table-column align="center" label="操作">
         <template slot-scope="{row}">
           <el-button
             type="success"
             size="small"
             icon="el-icon-circle-check-outline"
             @click="confirmEdit(row)"
-          >修改</el-button>
+          >修改策略</el-button>
+          <el-button type="danger" @click="delectStrategy(row.id)">删除策略</el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -87,7 +88,7 @@
 </template>
 
 <script>
-import { getStrategys } from "@/api/strategy.js";
+import { getStrategys, deleteStrategy } from "@/api/strategy.js";
 import Pagination from "@/components/Pagination";
 import { parseTime } from "@/utils";
 import waves from "@/directive/waves"; // Waves directive
@@ -162,6 +163,33 @@ export default {
         query: {
           id: row.id
         }
+      });
+    },
+    delectStrategy(id) {
+      this.$confirm("机器人可能在使用该策略, 是否继续删除?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning"
+      })
+        .then(() => {
+          var queryParam = {
+            id: id
+          };
+          this.deleteStrategyById(queryParam);
+        })
+        .catch(() => {
+          this.$message({
+            type: "info",
+            message: "已取消删除"
+          });
+        });
+    },
+    async deleteStrategyById(queryParam) {
+      const data = await deleteStrategy(queryParam);
+      this.getStrategys();
+      this.$message({
+        type: "success",
+        message: "删除成功!"
       });
     },
     checkBuyState(status) {

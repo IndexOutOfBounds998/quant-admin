@@ -82,7 +82,7 @@
           </el-form-item>
 
           <el-form-item label="策略周期:">
-            <el-input-number v-model="baseInfo.sleep" :min="1" :max="100000"></el-input-number>
+            <el-input-number v-model="baseInfo.sleep" :min="0" :max="100000"></el-input-number>
             <el-tag>秒执行一次</el-tag>
           </el-form-item>
 
@@ -310,7 +310,7 @@
             <el-form-item label="涨跌幅大于:">
               <el-row :gutter="6" class="grid-content">
                 <el-col :span="4">
-                  <el-input v-model="setting5.buyPercent" placeholder="百分比"></el-input>
+                  <el-input v-model="setting5.buyPercent" placeholder="只填数值"></el-input>
                 </el-col>
                 <el-col :span="2">
                   <el-tag type="danger" class="left">%</el-tag>
@@ -342,7 +342,7 @@
             <el-form-item label="涨跌幅大于:">
               <el-row :gutter="6" class="grid-content">
                 <el-col :span="4">
-                  <el-input v-model="setting5.sellPercent" placeholder="百分比"></el-input>
+                  <el-input v-model="setting5.sellPercent" placeholder="只填数值"></el-input>
                 </el-col>
                 <el-col :span="2">
                   <el-tag type="danger" class="left">%</el-tag>
@@ -360,6 +360,52 @@
       <!-- <el-tab-pane :label="title" name="last">
       
       </el-tab-pane>-->
+
+      <el-tab-pane label="止盈止损" name="six">
+        <el-form ref="setting6" :model="setting6" label-width="120px">
+          <el-form-item label="状态:">
+            <el-switch
+              v-model="setting6.isAble"
+              active-color="#13ce66"
+              inactive-color="#ff4949"
+              active-text="开启"
+              inactive-text="关闭"
+            ></el-switch>
+          </el-form-item>
+          <template v-if="setting6.isAble">
+            <el-form-item label="止盈:">
+              <el-row class="grid-content">
+                <el-col>
+                  <el-tag>盈利达到:</el-tag>
+                  <el-input-number
+                    v-model="setting6.takeProfit"
+                    :precision="4"
+                    :step="0.0001"
+                    :max="1000000"
+                  ></el-input-number>
+                  <el-tag type="success">%</el-tag>
+                  <el-tag type="danger" class="left">卖出</el-tag>
+                </el-col>
+              </el-row>
+            </el-form-item>
+            <el-form-item label="止损:">
+              <el-row class="grid-content">
+                <el-col>
+                  <el-tag>亏损达到:</el-tag>
+                  <el-input-number
+                    v-model="setting6.stopLoss"
+                    :precision="4"
+                    :step="0.0001"
+                    :max="1000000"
+                  ></el-input-number>
+                  <el-tag type="success">%</el-tag>
+                  <el-tag type="danger" class="left">卖出</el-tag>
+                </el-col>
+              </el-row>
+            </el-form-item>
+          </template>
+        </el-form>
+      </el-tab-pane>
     </el-tabs>
     <el-row>
       <el-col :offset="6">
@@ -429,6 +475,11 @@ export default {
         buyPercent: "",
         sellPercent: ""
       },
+      setting6: {
+        isAble: false,
+        takeProfit: 0,
+        stopLoss: 0
+      },
       //1min, 5min, 15min, 30min, 60min, 1day, 1mon, 1week, 1year
       klines: [
         {
@@ -469,15 +520,19 @@ export default {
         this.setting3 = JSON.parse(data.setting3);
         this.setting4 = JSON.parse(data.setting4);
         this.setting5 = JSON.parse(data.setting5);
-
+        this.setting6 = JSON.parse(data.setting6);
         this.baseInfo.strategyName = data.strategyName;
         this.baseInfo.buyAllWeights = data.buyAllWeights;
         this.baseInfo.sellAllWeights = data.sellAllWeights;
-        this.baseInfo.profit=data.profit;
+        this.baseInfo.profit = data.profit;
         this.baseInfo.sleep = data.sleep;
+
+        if (this.setting6.isAble == 1) {
+          this.setting6.isAble = true;
+        }
+
         if (data.isLimitPrice === 1) {
           //限价
-
           this.baseInfo.isLimitPrice = true;
           this.baseInfo.buyPrice = data.buyPrice;
           this.baseInfo.sellPrice = data.sellPrice;
@@ -522,7 +577,8 @@ export default {
         setting2: this.setting2,
         setting3: this.setting3,
         setting4: this.setting4,
-        setting5: this.setting5
+        setting5: this.setting5,
+        setting6: this.setting6
       };
       const data = await addOrUpdateStrategy(requestData);
       if (data.code === 20000) {

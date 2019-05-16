@@ -39,3 +39,11 @@ export function getStrategyById(params) {
     params
   })
 }
+
+export function deleteStrategy(params) {
+  return request({
+    url: '/strategy/deleteStrategy',
+    method: 'get',
+    params
+  })
+}
