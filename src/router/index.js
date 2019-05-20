@@ -34,8 +34,8 @@ export const constantRouterMap = [
     hidden: true,
     children: [{
       path: 'dashboard',
-      component: () => import('@/views/dashboard/index')
-      , meta: { title: '控制面板' }
+      component: () => import('@/views/dashboard/index'),
+      meta: { title: '控制面板' }
     }]
   },
   {
@@ -95,6 +95,11 @@ export const constantRouterMap = [
         name: 'Index',
         component: () => import('@/views/account/index'),
         meta: { title: 'api配置', icon: 'table' }
+      }, {
+        path: 'email',
+        name: 'Email',
+        component: () => import('@/views/account/email'),
+        meta: { title: '邮件配置', icon: 'email' }
       }, {
         path: 'info',
         name: 'Info',

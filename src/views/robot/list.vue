@@ -1,21 +1,21 @@
 <template>
   <div class="app-container">
     <el-table :data="tableData" stripe border height="850" style="width: 100%">
-      <el-table-column prop="id" label="机器人编号" width="100"></el-table-column>
-      <el-table-column prop="robotName" label="机器人名称" width="200">
+      <el-table-column prop="id" label="机器人编号" width="105px"></el-table-column>
+      <el-table-column prop="robotName" label="机器人名称" width="105px">
         <template slot-scope="scope">
           <i class="el-icon-info"></i>
           <span>{{ scope.row.robotName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column prop="strategyId" label="当前策略编号" width="150"></el-table-column>
-      <el-table-column prop="strategyName" label="当前策略名称" width="200"></el-table-column>
+      <el-table-column prop="strategyId" label="策略编号" width="105px"></el-table-column>
+      <el-table-column prop="strategyName" label="策略名称" width="105px"></el-table-column>
 
-      <el-table-column prop="symbol" label="交易对" width="200"></el-table-column>
-      <el-table-column prop="clientAddress" label="托管地址"></el-table-column>
+      <el-table-column prop="symbol" label="交易对" width="85px"></el-table-column>
+      <el-table-column prop="clientAddress" label="托管地址" width="165px"></el-table-column>
 
-      <el-table-column prop="isRun" label="运行状态">
+      <el-table-column prop="isRun" label="运行状态" width="135px">
         <template slot-scope="scope">
           <i class="el-icon-time"></i>
           <span v-if="scope.row.isRun===0" style="margin-left: 10px">
@@ -26,7 +26,7 @@
           </span>
         </template>
       </el-table-column>
-      <el-table-column fixed="right" label="操作" width="400">
+      <el-table-column label="操作" width="600px">
         <template slot-scope="scope">
           <el-button
             v-if="scope.row.isRun===0"
@@ -35,9 +35,15 @@
             size="small"
           >启动</el-button>
           <el-button v-else @click="operatingRobot(scope.row.id,0)" type="warning" size="small">停止</el-button>
-
-          <el-button @click="robotInfo(scope.row)" type="info" size="small">实时运行日志</el-button>
-          <el-button @click="orderInfo(scope.row.id)" type="success" size="small">成交订单</el-button>
+          <el-button @click="robotInfo(scope.row)" type="info" size="small">实时日志</el-button>
+          <el-button @click="orderInfo(scope.row.id)" type="warning" size="small">订单</el-button>
+          <el-button
+            icon="el-icon-info"
+            type="info"
+            size="small"
+            @click="profitInfo(scope.row.id)"
+          >盈亏</el-button>
+          <el-button @click="changeRobot(scope.row.id)" type="primary" size="small">修改</el-button>
           <el-button @click="deleteRobot(scope.row.id)" type="danger" size="small">删除</el-button>
         </template>
       </el-table-column>
@@ -77,6 +83,14 @@ export default {
         path: "/robot/info",
         query: {
           id: row.id
+        }
+      });
+    },
+    changeRobot(id) {
+      this.$router.push({
+        path: "/robot/index",
+        query: {
+          id: id
         }
       });
     },
@@ -136,6 +150,15 @@ export default {
         path: "/order/list",
         query: {
           id: id
+        }
+      });
+    },
+    profitInfo(robotId) {
+      //查看盈亏记录
+      this.$router.push({
+        path: "/order/profit",
+        query: {
+          id: robotId
         }
       });
     }

@@ -86,10 +86,11 @@ export default {
         frame => {
           this.stompClient.subscribe("/topic/" + this.robotId, msg => {
             // 订阅服务端提供的某个topic
+            if (this.tableData.length >= 100) {
+              this.tableData = [];
+            }
             var json = JSON.parse(msg.body);
             this.tableData.unshift(json);
-
-            console.log(this.tableData);
           });
         },
         err => {

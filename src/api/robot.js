@@ -2,11 +2,20 @@ import request from '@/utils/request'
 /**
  * 提交机器人
  */
-export function addRobot(data) {
+export function addOrUpdateRobot(data) {
     return request({
-        url: '/robot/addRobot',
+        url: '/robot/addOrUpdateRobot',
         method: 'post',
         data: data
+    })
+}
+
+
+export function getRobotById(data) {
+    return request({
+        url: '/robot/getRobotById',
+        method: 'get',
+        params: { id: data }
     })
 }
 

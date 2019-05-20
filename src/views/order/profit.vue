@@ -50,7 +50,7 @@ export default {
       return formatDate(date, "yyyy-MM-dd hh:mm:ss");
     },
     divideCad(data) {
-      return data * 100;
+      return (data * 100).toFixed(2) + "%";
     }
   },
   data() {

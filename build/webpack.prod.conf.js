@@ -55,7 +55,7 @@ const webpackConfig = merge(baseWebpackConfig, {
       template: 'index.html',
       inject: true,
       favicon: resolve('favicon.ico'),
-      title: '量化交易管理后台',
+      title: '量化交易',
       minify: {
         removeComments: true,
         collapseWhitespace: true,

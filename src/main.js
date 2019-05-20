@@ -14,7 +14,9 @@ import router from './router'
 
 import '@/icons' // icon
 import '@/permission' // permission control
-
+import Vuetify from 'vuetify'
+// index.js or main.js
+import 'vuetify/dist/vuetify.min.css'
 /**
  * This project originally used easy-mock to simulate data,
  * but its official service is very unstable,
@@ -25,7 +27,7 @@ import '@/permission' // permission control
  */
 import '../mock' // simulation data
 
-Vue.use(ElementUI, { locale })
+Vue.use(ElementUI, Vuetify, { locale })
 
 Vue.config.productionTip = false
 

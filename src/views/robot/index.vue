@@ -40,24 +40,25 @@
         </el-select>
       </el-form-item>
       <el-form-item>
-        <el-button type="primary" @click="onSubmit">立即创建</el-button>
+        <el-button type="primary" @click="onSubmit">{{title}}</el-button>
         <el-button>取消</el-button>
       </el-form-item>
     </el-form>
   </div>
 </template>
 <script>
-
 import { getSimpleStrategys } from "@/api/strategy.js";
 import { getNodes } from "@/api/nodes.js";
 import { getSymbols } from "@/api/symbol.js";
-import { addRobot } from "@/api/robot.js";
+import { getRobotById, addOrUpdateRobot } from "@/api/robot.js";
 import { getAccounts } from "@/api/account.js";
 import { getToken, setToken, removeToken } from "@/utils/auth";
 export default {
   data() {
     return {
+      title: "立即创建",
       robot: {
+        id: "",
         robotName: "",
         strategyId: "",
         accountId: "",
@@ -99,11 +100,21 @@ export default {
     };
   },
   created() {
+    const id = this.$route.query.id;
+    if (id !== undefined) {
+      this.title = "立即修改";
+      this.robot.id = id;
+      const data = getRobotById(id).then(data => {
+        console.log(data);
+        this.robot = data.data;
+        this.robot.nodeAddress = data.data.clientAddress;
+      });
+    }
+
     this.getStrategys();
     this.getNodes();
     this.getSymbols();
     this.getAccounts();
-
   },
   methods: {
     //获取策略
@@ -129,12 +140,15 @@ export default {
     onSubmit() {
       this.$refs["form"].validate(valid => {
         if (valid) {
-          addRobot(this.robot).then(data => {
+          addOrUpdateRobot(this.robot).then(data => {
             console.log("res=====" + data);
             if (data.code === 20000) {
               this.$notify({
                 title: "成功",
-                message: "机器人创建成功",
+                message:
+                  this.robot.id === undefined
+                    ? "机器人创建成功"
+                    : "机器人修改成功",
                 type: "success",
                 duration: 2000
               });

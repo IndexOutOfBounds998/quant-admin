@@ -14,31 +14,32 @@
       v-loading="listLoading"
       :data="list"
       border
+      height="850"
       fit
       highlight-current-row
       style="width: 100%"
     >
-      <el-table-column align="center" label="ID" width="80">
+      <el-table-column align="center" label="ID" width="80px">
         <template slot-scope="scope">
           <span>{{ scope.row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column align="center" label="名称" width="120">
+      <el-table-column align="center" label="名称" width="120px">
         <template slot-scope="scope">
           <span>{{ scope.row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column width="300px" align="center" label="access key">
+      <!-- <el-table-column width="300px" align="center" label="access key">
         <template slot-scope="scope">
           <span>{{ scope.row.accessKey }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column width="300px" label="Secret Key">
         <template slot-scope="scope">
-          <span>{{ scope.row.secretKey }}</span>
+          <span  placeholder="password">{{ scope.row.secretKey }}</span>
         </template>
       </el-table-column>
 
@@ -54,7 +55,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column width="130px" align="center" label="创建日期">
+      <el-table-column width="160px" align="center" label="创建日期">
         <template slot-scope="scope">
           <span>{{ scope.row.createTime | formatDate }}</span>
         </template>
