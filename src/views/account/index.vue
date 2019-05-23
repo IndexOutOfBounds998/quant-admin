@@ -31,17 +31,17 @@
         </template>
       </el-table-column>
 
-      <!-- <el-table-column width="300px" align="center" label="access key">
+      <el-table-column width="300px" align="center" label="access key">
         <template slot-scope="scope">
           <span>{{ scope.row.accessKey }}</span>
         </template>
-      </el-table-column> -->
+      </el-table-column>
 
-      <el-table-column width="300px" label="Secret Key">
+      <!-- <el-table-column width="300px" label="Secret Key">
         <template slot-scope="scope">
           <span  placeholder="password">{{ scope.row.secretKey }}</span>
         </template>
-      </el-table-column>
+      </el-table-column> -->
 
       <el-table-column min-width="200px" label="备注说明">
         <template slot-scope="scope">

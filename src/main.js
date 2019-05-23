@@ -25,7 +25,6 @@ import 'vuetify/dist/vuetify.min.css'
  * it will intercept your request, so you won't see the request in the network.
  * If you remove `../mock` it will automatically request easy-mock data.
  */
-import '../mock' // simulation data
 
 Vue.use(ElementUI, Vuetify, { locale })
 

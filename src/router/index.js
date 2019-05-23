@@ -44,18 +44,22 @@ export const constantRouterMap = [
     meta: { title: '策略中心', icon: 'example' },
     children: [
       {
-        path: 'list',
-        name: 'List',
-        component: () => import('@/views/strategy/list'),
-        meta: { title: '我的策略', icon: 'tree' }
-      },
-      {
         path: 'index',
         name: 'Index',
         component: () => import('@/views/strategy/index'),
-        meta: { title: '策略配置', icon: 'table' }
+        meta: { title: '简单策略', icon: 'table' }
+      },
+      {
+        path: 'indicator',
+        name: 'Indicator',
+        component: () => import('@/views/strategy/indicator'),
+        meta: { title: '指标策略', icon: 'tree' }
+      }, {
+        path: 'list',
+        name: 'List',
+        component: () => import('@/views/strategy/list'),
+        meta: { title: '我的策略', icon: 'excel' }
       }
-
     ]
   },
   {

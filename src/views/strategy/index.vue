@@ -100,7 +100,7 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="策略一" name="second">
+      <el-tab-pane label="因子一" name="second">
         <el-form ref="setting1" :model="setting1" label-width="120px">
           <el-form-item label="买入:">
             <el-tag type="success">购买订单20位</el-tag>
@@ -146,7 +146,7 @@
         </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="策略二" name="third">
+      <el-tab-pane label="因子二" name="third">
         <el-form ref="setting2" :model="setting2" label-width="120px">
           <el-form-item label="买入:">
             <el-row class="grid-content">
@@ -191,7 +191,7 @@
         </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="策略三" name="fourth">
+      <el-tab-pane label="因子三" name="fourth">
         <el-form ref="setting3" :model="setting3" label-width="120px">
           <el-form-item label="买入:">
             <el-row class="grid-content">
@@ -240,7 +240,7 @@
         </el-form>
       </el-tab-pane>
 
-      <el-tab-pane label="策略四" name="five">
+      <el-tab-pane label="因子四" name="five">
         <el-form ref="setting4" :model="setting4" label-width="120px">
           <el-form-item label="买入:">
             <el-row class="grid-content">
@@ -291,7 +291,7 @@
           </el-form-item>
         </el-form>
       </el-tab-pane>
-      <el-tab-pane label="策略五">
+      <el-tab-pane label="因子五">
         <el-form ref="setting5" :model="setting5" label-width="120px">
           <el-form-item label="买入:">
             <template v-for="buySetting in setting5.buyStrategy" :v-bind="buySetting.id">
@@ -560,6 +560,22 @@ export default {
         {
           value: "60min",
           label: "60min"
+        },
+        {
+          value: "1day",
+          label: "1day"
+        },
+        {
+          value: "1mon",
+          label: "1mon"
+        },
+        {
+          value: "1week",
+          label: "1week"
+        },
+        {
+          value: "1year",
+          label: "1year"
         }
       ],
       increS5Buy: 1,
@@ -649,7 +665,8 @@ export default {
           type: "success",
           duration: 2000
         });
-
+        this.id = data.data;
+        this.title = "修改";
         // this.$router.push({ path: "/strategy/list" });
       }
     },

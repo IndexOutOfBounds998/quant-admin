@@ -91,14 +91,6 @@ export default {
     this.robotId = id;
     this.listQuery.rid = id;
     this.getOrders();
-
-    this.timer = setInterval(() => {
-      try {
-        this.getOrders();
-      } catch (err) {
-        console.log(err);
-      }
-    }, 3000);
   },
   methods: {
     async getOrders() {
