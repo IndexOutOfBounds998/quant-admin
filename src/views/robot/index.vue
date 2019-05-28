@@ -35,7 +35,12 @@
       </el-form-item>
 
       <el-form-item label="节点选择:" prop="nodeAddress">
-        <el-select v-model="robot.nodeAddress" placeholder="请选择节点">
+        <el-select
+          v-model="robot.nodeAddress"
+          placeholder="请选择节点"
+          value-key="ipo"
+          @change="ipChange"
+        >
           <el-option v-for="item in nodes" :key="item.ipo" :label="item.ipo" :value="item.ipo"></el-option>
         </el-select>
       </el-form-item>
@@ -164,6 +169,10 @@ export default {
           });
         }
       });
+    },
+    ipChange($event) {
+      console.log($event);
+      this.robot.nodeAddress = $event;
     }
   }
 };
