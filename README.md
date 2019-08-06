@@ -18,6 +18,8 @@ npm run build
 
 # Build for production and view the bundle analyzer report
 npm run build --report
+
+框架文档:https://github.com/PanJiaChen/vue-element-admin
 ```
 ## Donate
 
