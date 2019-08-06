@@ -19,3 +19,6 @@ npm run build
 # Build for production and view the bundle analyzer report
 npm run build --report
 ```
+## Donate
+
+如果你觉得这个项目帮助到了你，你可以帮作者点个star表示鼓励 :tropical_drink:
