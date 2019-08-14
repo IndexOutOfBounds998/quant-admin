@@ -1,6 +1,6 @@
 # quant-admin
 
-修改 statis 为./ 
+
 ## Build Setup
 
 ```bash
