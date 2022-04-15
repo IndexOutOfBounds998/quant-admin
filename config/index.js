@@ -1,18 +1,32 @@
-'use strict'
+"use strict";
 // Template version: 1.2.6
 // see http://vuejs-templates.github.io/webpack for documentation.
 
-const path = require('path')
+const path = require("path");
 
 module.exports = {
   dev: {
     // Paths
-    assetsSubDirectory: 'static',
-    assetsPublicPath: './',
-    proxyTable: {},
+    assetsSubDirectory: "static",
+    assetsPublicPath: "/",
+    proxyTable: {
+      "/ajax": {
+        // target: 'http://localhost:8080', // 接口的域名
+        target: "http://127.0.0.1:8081", // 接口的域名，本地做了通道
+        // secure: false,  // 如果是https接口，需要配置这个参数
+        changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
+        pathRewrite: {
+          "^/ajax": ""
+        },
+        headers: {
+          "oper-way": 2,
+          "third-type": "default"
+        }
+      }
+    },
 
     // Various Dev Server settings
-    host: 'localhost', // can be overwritten by process.env.HOST
+    host: "localhost", // can be overwritten by process.env.HOST
     port: 9528, // can be overwritten by process.env.PORT, if port is in use, a free one will be determined
     autoOpenBrowser: true,
     errorOverlay: true,
@@ -32,7 +46,7 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-source-map',
+    devtool: "cheap-source-map",
 
     // CSS Sourcemaps off by default because relative paths are "buggy"
     // with this option, according to the CSS-Loader README
@@ -44,11 +58,11 @@ module.exports = {
 
   build: {
     // Template for index.html
-    index: path.resolve(__dirname, '../dist/index.html'),
+    index: path.resolve(__dirname, "../dist/index.html"),
 
     // Paths
-    assetsRoot: path.resolve(__dirname, '../dist'),
-    assetsSubDirectory: 'static',
+    assetsRoot: path.resolve(__dirname, "../dist"),
+    assetsSubDirectory: "static",
 
     /**
      * You can set by youself according to actual condition
@@ -57,7 +71,7 @@ module.exports = {
      * then assetsPublicPath should be set to "/bar/".
      * In most cases please use '/' !!!
      */
-    assetsPublicPath: '/',
+    assetsPublicPath: "/",
 
     /**
      * Source Maps
@@ -65,14 +79,14 @@ module.exports = {
 
     productionSourceMap: false,
     // https://webpack.js.org/configuration/devtool/#production
-    devtool: 'source-map',
+    devtool: "source-map",
 
     // Gzip off by default as many popular static hosts such as
     // Surge or Netlify already gzip all static assets for you.
     // Before setting to `true`, make sure to:
     // npm install --save-dev compression-webpack-plugin
     productionGzip: false,
-    productionGzipExtensions: ['js', 'css'],
+    productionGzipExtensions: ["js", "css"],
 
     // Run the build command with an extra argument to
     // View the bundle analyzer report after build finishes:
@@ -83,4 +97,4 @@ module.exports = {
     // `npm run build:prod --generate_report`
     generateAnalyzerReport: process.env.npm_config_generate_report || false
   }
-}
+};
